@@ -1,0 +1,82 @@
+---
+/*
+ * Un projet dans une page thème : marque, titre, rôle, résultat chiffré,
+ * texte, puis galerie.
+ */
+import { render, type CollectionEntry } from 'astro:content';
+import Galerie from './Galerie.astro';
+
+interface Props {
+	projet: CollectionEntry<'projets'>;
+}
+
+const { projet } = Astro.props;
+const { titre, marque, annee, role, resultat, galerie } = projet.data;
+const { Content } = await render(projet);
+const idTitre = `${projet.id}-titre`;
+---
+
+<article class="projet" id={projet.id} aria-labelledby={idTitre}>
+	<header class="projet__entete">
+		<p class="projet__meta surtitre">
+			{marque}
+			{annee && <span> · {annee}</span>}
+		</p>
+		<h2 class="projet__titre" id={idTitre}>{titre}</h2>
+		{role && <p class="projet__role">{role}</p>}
+		{
+			resultat && (
+				<p class="projet__resultat">
+					<span class="projet__resultat-valeur">{resultat.valeur}</span>
+					<span class="projet__resultat-libelle">{resultat.libelle}</span>
+				</p>
+			)
+		}
+	</header>
+	<div class="projet__texte prose">
+		<Content />
+	</div>
+	<Galerie blocs={galerie} />
+</article>
+
+<style>
+	.projet {
+		display: grid;
+		gap: var(--espace-5);
+		padding-top: var(--espace-6);
+		border-top: 1px solid var(--couleur-filet);
+	}
+
+	.projet__entete {
+		display: grid;
+		gap: var(--espace-2);
+	}
+
+	.projet__titre {
+		font-size: var(--texte-xl);
+	}
+
+	.projet__role {
+		color: var(--couleur-texte-doux);
+	}
+
+	.projet__resultat {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: var(--espace-1) var(--espace-3);
+		margin-top: var(--espace-3);
+	}
+
+	.projet__resultat-valeur {
+		font-family: var(--police-titre);
+		font-weight: var(--graisse-titre);
+		font-size: var(--texte-xxl);
+		line-height: 1;
+	}
+
+	.projet__resultat-libelle {
+		max-width: 16rem;
+		font-size: var(--texte-s);
+	}
+</style>

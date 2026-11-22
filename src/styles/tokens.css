@@ -1,0 +1,49 @@
+/*
+ * DESIGN SYSTEM : toutes les couleurs, polices, tailles et espacements du site.
+ * Ne pas modifier sans demande explicite de Flora.
+ */
+:root {
+	/* Couleurs */
+	--couleur-fond: #f3f3f3;
+	--couleur-texte: #141414;
+	--couleur-texte-doux: #5a5a5a;
+	--couleur-filet: #d4d4d4;
+	--couleur-accent: #141414;
+
+	/* Polices */
+	--police-titre: ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+	--police-texte: ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+	--graisse-titre: 700;
+	--graisse-texte: 400;
+
+	/* Tailles de texte (s'adaptent à la largeur de l'écran) */
+	--texte-xs: 0.75rem;
+	--texte-s: 0.875rem;
+	--texte-m: 1.0625rem;
+	--texte-l: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+	--texte-xl: clamp(1.75rem, 1.3rem + 1.8vw, 3rem);
+	--texte-xxl: clamp(2.5rem, 1.5rem + 4.5vw, 5.75rem);
+
+	--interligne-titre: 1.04;
+	--interligne-texte: 1.55;
+	--approche-capitales: 0.1em;
+
+	/* Espacements */
+	--espace-1: 0.25rem;
+	--espace-2: 0.5rem;
+	--espace-3: 1rem;
+	--espace-4: 1.5rem;
+	--espace-5: 2.5rem;
+	--espace-6: clamp(3rem, 2.5rem + 2.5vw, 5rem);
+	--espace-7: clamp(4.5rem, 3rem + 6vw, 9rem);
+
+	/* Mise en page */
+	--marge-page: clamp(1rem, 0.4rem + 2.6vw, 3rem);
+	--largeur-max: 90rem;
+	--largeur-texte: 38rem;
+	--gouttiere: clamp(0.5rem, 0.25rem + 1vw, 1.25rem);
+
+	/* Mouvement */
+	--duree-courte: 160ms;
+	--courbe-sortie: cubic-bezier(0.22, 1, 0.36, 1);
+}

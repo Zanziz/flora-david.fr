@@ -1,0 +1,37 @@
+# Les thèmes du site, dans l'ordre du sommaire.
+#
+# - id    : identifiant technique, utilisé dans l'adresse de la page et dans chaque projet.
+#           Ne le modifie pas sans demander : les liens seraient cassés.
+# - titre : le nom affiché.
+# - ordre : la position dans le sommaire.
+# - intro : texte court affiché en haut de la page (facultatif).
+
+- id: art-direction
+  titre: Art Direction
+  ordre: 1
+
+- id: social-media-brand-content
+  titre: Social Media & Brand Content
+  ordre: 2
+  intro: >-
+    Définition de l'identité visuelle, création de contenus qui traduisent l'univers de marque,
+    direction artistique des shootings et rédaction du storytelling autour des contenus.
+
+- id: communication
+  titre: Communication
+  ordre: 3
+
+- id: e-commerce
+  titre: E-commerce
+  ordre: 4
+
+- id: photographie
+  titre: Photographie
+  ordre: 5
+  intro: >-
+    En parallèle de mes projets professionnels, j'ai toujours nourri une passion pour la photographie.
+    Ces dernières années, j'ai réalisé des shootings produits mais aussi des photos éditoriales,
+    en veillant à ce que chaque image s'intègre harmonieusement dans l'identité visuelle des marques
+    avec lesquelles je travaille. Après la prise de vue, je retouche les images sur Lightroom,
+    en accordant une attention particulière aux couleurs et à l'ambiance générale de mes clichés.
+    J'utilise un appareil Fuji X-E4.

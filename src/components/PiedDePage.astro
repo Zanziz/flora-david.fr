@@ -1,0 +1,26 @@
+---
+import { getSite } from '../lib/contenu';
+
+const site = await getSite();
+---
+
+<footer class="pied">
+	<p>{site.nom} · {site.ville}</p>
+	<a href="/mentions-legales">Mentions légales</a>
+</footer>
+
+<style>
+	.pied {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: var(--espace-2) var(--espace-4);
+		width: 100%;
+		max-width: var(--largeur-max);
+		margin: var(--espace-7) auto 0;
+		padding: var(--espace-4) var(--marge-page);
+		border-top: 1px solid var(--couleur-filet);
+		font-size: var(--texte-s);
+		color: var(--couleur-texte-doux);
+	}
+</style>

@@ -1,0 +1,114 @@
+---
+/*
+ * Galerie d'un projet : une suite de blocs à rythme variable.
+ * plein = 1 image · diptyque = 2 · triptyque = 3 · collage = 3 à 6
+ */
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+
+type Bloc = CollectionEntry<'projets'>['data']['galerie'][number];
+
+interface Props {
+	blocs: Bloc[];
+}
+
+const { blocs } = Astro.props;
+
+/** Largeurs générées pour chaque image, sans jamais dépasser l'original. */
+const LARGEURS = [480, 800, 1200, 1600, 2000, 2400];
+const largeurs = (original: number) => [...LARGEURS.filter((l) => l < original), original];
+
+/** Largeur affichée de chaque image, selon le format du bloc. */
+function tailles(format: Bloc['format'], index: number) {
+	switch (format) {
+		case 'plein':
+			return '(min-width: 90rem) 84rem, 94vw';
+		case 'diptyque':
+			return '(min-width: 90rem) 42rem, 47vw';
+		case 'triptyque':
+			return index === 0 ? '(min-width: 48rem) 31vw, 94vw' : '(min-width: 48rem) 31vw, 47vw';
+		case 'collage':
+			return '(min-width: 48rem) 31vw, 47vw';
+	}
+}
+---
+
+<div class="galerie">
+	{
+		blocs.map((bloc) => (
+			<figure class:list={['bloc', `bloc--${bloc.format}`]}>
+				<div class="bloc__images">
+					{bloc.images.map((image, index) => (
+						<Image
+							src={image.src}
+							alt={image.alt}
+							widths={largeurs(image.src.width)}
+							sizes={tailles(bloc.format, index)}
+							loading="lazy"
+							decoding="async"
+						/>
+					))}
+				</div>
+				{bloc.legende && <figcaption class="bloc__legende">{bloc.legende}</figcaption>}
+			</figure>
+		))
+	}
+</div>
+
+<style>
+	.galerie {
+		display: grid;
+		gap: var(--espace-6);
+	}
+
+	.bloc__images {
+		display: grid;
+		gap: var(--gouttiere);
+		align-items: start;
+	}
+
+	.bloc__legende {
+		margin-top: var(--espace-2);
+		font-size: var(--texte-s);
+		color: var(--couleur-texte-doux);
+	}
+
+	.bloc--diptyque .bloc__images {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	/* Triptyque : sur mobile, une grande image puis deux côte à côte */
+	.bloc--triptyque .bloc__images {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.bloc--triptyque .bloc__images > :global(:first-child) {
+		grid-column: 1 / -1;
+	}
+
+	/* Collage : composition libre en colonnes, sans recadrer les images */
+	.bloc--collage .bloc__images {
+		display: block;
+		columns: 2;
+		column-gap: var(--gouttiere);
+	}
+
+	.bloc--collage .bloc__images > :global(img) {
+		margin-bottom: var(--gouttiere);
+		break-inside: avoid;
+	}
+
+	@media (min-width: 48rem) {
+		.bloc--triptyque .bloc__images {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.bloc--triptyque .bloc__images > :global(:first-child) {
+			grid-column: auto;
+		}
+
+		.bloc--collage .bloc__images {
+			columns: 3;
+		}
+	}
+</style>

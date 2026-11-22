@@ -1,0 +1,117 @@
+---
+/*
+ * Page d'un thème : son titre, son intro, puis ses projets les uns sous
+ * les autres. En bas, un lien vers le thème suivant.
+ */
+import type { CollectionEntry } from 'astro:content';
+import ProjetSection from '../components/ProjetSection.astro';
+import Base from '../layouts/Base.astro';
+import { getProjetsDuTheme, getThemes, numero, resume } from '../lib/contenu';
+
+export async function getStaticPaths() {
+	const themes = await getThemes();
+	return themes.map((theme, index) => ({
+		params: { theme: theme.id },
+		props: { theme, position: index + 1, suivant: themes[(index + 1) % themes.length] },
+	}));
+}
+
+interface Props {
+	theme: CollectionEntry<'themes'>;
+	position: number;
+	suivant: CollectionEntry<'themes'>;
+}
+
+const { theme, position, suivant } = Astro.props;
+const projets = await getProjetsDuTheme(theme.id);
+
+const description = theme.data.intro
+	? resume(theme.data.intro)
+	: resume(`${theme.data.titre} : ${projets.map((projet) => projet.data.titre).join(', ')}. Projets de Flora David.`);
+const imagePartage = projets[0]?.data.galerie[0]?.images[0]?.src;
+---
+
+<Base titre={theme.data.titre} description={description} image={imagePartage}>
+	<div class="theme">
+		<header class="theme__entete">
+			<p class="surtitre">{numero(position)}</p>
+			<h1 class="theme__titre">{theme.data.titre}</h1>
+			{theme.data.intro && <p class="theme__intro">{theme.data.intro}</p>}
+		</header>
+
+		{
+			projets.length > 0 ? (
+				<div class="theme__projets">
+					{projets.map((projet) => (
+						<ProjetSection projet={projet} />
+					))}
+				</div>
+			) : (
+				<p class="theme__vide">Projets à venir.</p>
+			)
+		}
+
+		<nav class="theme__suivant" aria-label="Thème suivant">
+			<a href={`/${suivant.id}`}>
+				<span class="surtitre">Thème suivant</span>
+				<span class="theme__suivant-titre">{suivant.data.titre}</span>
+			</a>
+		</nav>
+	</div>
+</Base>
+
+<style>
+	.theme {
+		width: 100%;
+		max-width: var(--largeur-max);
+		margin-inline: auto;
+		padding: var(--espace-6) var(--marge-page) 0;
+	}
+
+	.theme__entete {
+		display: grid;
+		gap: var(--espace-3);
+		margin-bottom: var(--espace-6);
+	}
+
+	.theme__titre {
+		font-size: var(--texte-xxl);
+	}
+
+	.theme__intro {
+		max-width: var(--largeur-texte);
+		font-size: var(--texte-l);
+		line-height: 1.4;
+	}
+
+	.theme__projets {
+		display: grid;
+		gap: var(--espace-7);
+	}
+
+	.theme__suivant {
+		margin-top: var(--espace-7);
+		border-top: 1px solid var(--couleur-filet);
+	}
+
+	.theme__suivant a {
+		display: grid;
+		gap: var(--espace-2);
+		padding-top: var(--espace-5);
+		text-decoration: none;
+	}
+
+	.theme__suivant-titre {
+		font-family: var(--police-titre);
+		font-weight: var(--graisse-titre);
+		font-size: var(--texte-xl);
+		line-height: var(--interligne-titre);
+	}
+
+	@media (hover: hover) {
+		.theme__suivant a:hover .theme__suivant-titre {
+			text-decoration: underline;
+			text-decoration-thickness: 2px;
+		}
+	}
+</style>

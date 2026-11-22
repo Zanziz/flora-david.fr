@@ -1,0 +1,31 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const page = (await getEntry('mentionsLegales', 'mentions-legales'))!;
+const { Content } = await render(page);
+---
+
+<Base titre={page.data.titre} description={page.data.description}>
+	<div class="mentions">
+		<h1 class="mentions__titre">{page.data.titre}</h1>
+		<div class="prose">
+			<Content />
+		</div>
+	</div>
+</Base>
+
+<style>
+	.mentions {
+		display: grid;
+		gap: var(--espace-5);
+		width: 100%;
+		max-width: var(--largeur-max);
+		margin-inline: auto;
+		padding: var(--espace-6) var(--marge-page) 0;
+	}
+
+	.mentions__titre {
+		font-size: var(--texte-xl);
+	}
+</style>

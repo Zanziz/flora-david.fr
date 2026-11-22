@@ -1,0 +1,134 @@
+---
+/*
+ * En-tête du site : le nom (retour à l'accueil) et la navigation.
+ * Sur mobile, la navigation se replie derrière un bouton « Menu ».
+ * Sans JavaScript, elle reste simplement affichée.
+ */
+import { cheminPropre, getSite, getThemes } from '../lib/contenu';
+
+const site = await getSite();
+const themes = await getThemes();
+const chemin = cheminPropre(Astro.url);
+
+const liens = [
+	...themes.map((theme) => ({ href: `/${theme.id}`, libelle: theme.data.titre })),
+	{ href: '/a-propos', libelle: 'À propos' },
+];
+---
+
+<header class="entete">
+	<a class="entete__nom" href="/" aria-current={chemin === '/' ? 'page' : undefined}>{site.nom}</a>
+	<button class="entete__bouton" type="button" aria-expanded="false" aria-controls="navigation">
+		Menu
+	</button>
+	<nav id="navigation" class="entete__nav" aria-label="Navigation principale">
+		<ul>
+			{
+				liens.map((lien) => (
+					<li>
+						<a href={lien.href} aria-current={chemin === lien.href ? 'page' : undefined}>
+							{lien.libelle}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
+</header>
+
+<script>
+	const bouton = document.querySelector<HTMLButtonElement>('.entete__bouton');
+
+	if (bouton) {
+		const basculer = (ouvrir: boolean) => {
+			bouton.setAttribute('aria-expanded', String(ouvrir));
+			bouton.textContent = ouvrir ? 'Fermer' : 'Menu';
+		};
+
+		bouton.addEventListener('click', () => {
+			basculer(bouton.getAttribute('aria-expanded') !== 'true');
+		});
+
+		document.addEventListener('keydown', (evenement) => {
+			if (evenement.key === 'Escape' && bouton.getAttribute('aria-expanded') === 'true') {
+				basculer(false);
+				bouton.focus();
+			}
+		});
+	}
+</script>
+
+<style>
+	.entete {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: var(--espace-2) var(--espace-4);
+		width: 100%;
+		max-width: var(--largeur-max);
+		margin-inline: auto;
+		padding: var(--espace-3) var(--marge-page);
+	}
+
+	.entete__nom {
+		font-family: var(--police-titre);
+		font-weight: var(--graisse-titre);
+		font-size: var(--texte-m);
+		text-decoration: none;
+	}
+
+	.entete__nav ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--espace-2) var(--espace-4);
+		padding: 0;
+		list-style: none;
+	}
+
+	.entete__nav a {
+		font-size: var(--texte-s);
+		text-decoration: none;
+	}
+
+	.entete__nav a:hover,
+	.entete__nav a[aria-current='page'] {
+		text-decoration: underline;
+	}
+
+	.entete__bouton {
+		display: none;
+		padding: var(--espace-2) 0;
+		border: 0;
+		background: none;
+		color: inherit;
+		font: inherit;
+		font-size: var(--texte-s);
+		cursor: pointer;
+	}
+
+	@media (max-width: 63.99rem) {
+		:global(.js) .entete__bouton {
+			display: block;
+		}
+
+		:global(.js) .entete__nav {
+			display: none;
+			flex-basis: 100%;
+		}
+
+		:global(.js) .entete__bouton[aria-expanded='true'] + .entete__nav {
+			display: block;
+		}
+
+		.entete__nav ul {
+			flex-direction: column;
+			gap: var(--espace-3);
+			padding-block: var(--espace-4);
+		}
+
+		.entete__nav a {
+			font-size: var(--texte-l);
+		}
+	}
+</style>

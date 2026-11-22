@@ -1,0 +1,32 @@
+# Fichiers générés (recréés à chaque build)
+dist/
+.astro/
+node_modules/
+
+# Secrets : jamais dans le repo (il est public)
+.env
+.env.*
+
+# Netlify en local
+.netlify/
+
+# Documents privés : CV, lettres, brief de lancement…
+# Le repo est public : aucun PDF, aucun document personnel.
+*.pdf
+BRIEF-portfolio.md
+
+# Dossier de travail local (exports Canva, essais…), jamais publié
+_local/
+
+# Logs
+npm-debug.log*
+
+# Fichiers système et éditeurs
+.DS_Store
+.idea/
+
+# Réglages locaux de Claude Code
+.claude/settings.local.json
+
+# Cache d'outils de design locaux
+.impeccable/

@@ -1,0 +1,141 @@
+---
+/*
+ * Effet d'accueil « image trail » : au passage de la souris, des photos
+ * apparaissent sous le curseur puis s'effacent. Sur mobile, un toucher
+ * fait apparaître une photo. Désactivé si le visiteur a demandé à réduire
+ * les animations. Les photos sont décoratives (ignorées par les lecteurs d'écran).
+ *
+ * À placer dans un conteneur marqué `data-trail-zone`, en position relative.
+ */
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+
+interface Props {
+	images: ImageMetadata[];
+}
+
+const { images } = Astro.props;
+
+// Versions légères (520 px de large), chargées seulement après l'affichage de la page.
+const versions = await Promise.all(
+	images.map((image) => getImage({ src: image, width: Math.min(520, image.width), format: 'webp' })),
+);
+const sources = versions.map((version) => ({
+	src: version.src,
+	largeur: Number(version.attributes.width),
+	hauteur: Number(version.attributes.height),
+}));
+---
+
+<div class="trail" data-trail data-sources={JSON.stringify(sources)} aria-hidden="true"></div>
+
+<script>
+	type Source = { src: string; largeur: number; hauteur: number };
+
+	const TAILLE_POOL = 6; // images visibles en même temps, au maximum
+	const DUREE = 1400; // durée de vie d'une image, en millisecondes
+
+	function initialiser(calque: HTMLElement) {
+		const zone = calque.closest<HTMLElement>('[data-trail-zone]') ?? calque.parentElement;
+		const sources: Source[] = JSON.parse(calque.dataset.sources ?? '[]');
+		if (!zone || sources.length === 0) return;
+
+		const pool: HTMLImageElement[] = [];
+		let suivante = 0;
+		let profondeur = 1;
+		let dernierPoint: { x: number; y: number } | null = null;
+		let prechargees = false;
+
+		// Précharge les photos une fois la page affichée, sans gêner son chargement.
+		const precharger = () => {
+			if (prechargees) return;
+			prechargees = true;
+			for (const source of sources) new Image().src = source.src;
+		};
+		if ('requestIdleCallback' in window) requestIdleCallback(precharger, { timeout: 3000 });
+		else setTimeout(precharger, 2000);
+
+		// Distance minimale entre deux apparitions : environ 10 % de l'écran.
+		const seuil = () => Math.max(60, Math.min(window.innerWidth, window.innerHeight) * 0.1);
+
+		const position = (evenement: MouseEvent) => {
+			const cadre = zone.getBoundingClientRect();
+			return { x: evenement.clientX - cadre.left, y: evenement.clientY - cadre.top };
+		};
+
+		const afficher = ({ x, y }: { x: number; y: number }) => {
+			precharger();
+			const source = sources[suivante % sources.length];
+			let image = pool[suivante % TAILLE_POOL];
+			if (!image) {
+				image = document.createElement('img');
+				image.alt = '';
+				image.decoding = 'async';
+				image.className = 'trail__image';
+				calque.append(image);
+				pool.push(image);
+			}
+			suivante++;
+
+			image.src = source.src;
+			image.width = source.largeur;
+			image.height = source.hauteur;
+			image.style.zIndex = String(++profondeur);
+			image.getAnimations().forEach((animation) => animation.cancel());
+
+			const place = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+			image.animate(
+				[
+					{ opacity: 0, transform: `${place} scale(0.94)` },
+					{ opacity: 1, transform: `${place} scale(1)`, offset: 0.12 },
+					{ opacity: 1, transform: `${place} scale(1)`, offset: 0.7 },
+					{ opacity: 0, transform: `${place} scale(1)` },
+				],
+				{ duration: DUREE, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' },
+			);
+		};
+
+		zone.addEventListener('pointermove', (evenement) => {
+			if (evenement.pointerType !== 'mouse') return;
+			const point = position(evenement);
+			if (dernierPoint && Math.hypot(point.x - dernierPoint.x, point.y - dernierPoint.y) < seuil()) return;
+			dernierPoint = point;
+			afficher(point);
+		});
+
+		zone.addEventListener('pointerleave', () => {
+			dernierPoint = null;
+		});
+
+		// Sur écran tactile : un toucher fait apparaître une photo (sauf sur un lien).
+		zone.addEventListener('click', (evenement) => {
+			if ((evenement.target as Element).closest('a, button')) return;
+			if ((evenement as PointerEvent).pointerType === 'mouse') return;
+			afficher(position(evenement));
+		});
+	}
+
+	const calque = document.querySelector<HTMLElement>('[data-trail]');
+	const mouvementReduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	if (calque && !mouvementReduit) initialiser(calque);
+</script>
+
+<style>
+	.trail {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	.trail :global(.trail__image) {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: clamp(8rem, 15vw, 14rem);
+		height: auto;
+		opacity: 0;
+		will-change: transform, opacity;
+	}
+</style>

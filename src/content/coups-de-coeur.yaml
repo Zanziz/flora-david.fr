@@ -1,0 +1,25 @@
+# Mes derniers coups de cœur : entre 3 et 6 éléments, affichés dans cet ordre.
+#
+# Pour chaque élément :
+# - categorie : Film, Expo, Musique, Livre, Tendance…
+# - titre     : le nom de l'œuvre
+# - auteur    : réalisateur, artiste, lieu… (facultatif)
+# - phrase    : pourquoi j'aime, en une phrase (facultatif)
+
+- categorie: Film
+  titre: À compléter
+  auteur: Réalisateur ou réalisatrice
+  phrase: Une phrase sur ce qui m'a plu.
+
+- categorie: Expo
+  titre: À compléter
+  auteur: Artiste ou lieu
+  phrase: Une phrase sur ce qui m'a plu.
+
+- categorie: Musique
+  titre: À compléter
+  auteur: Artiste
+
+- categorie: Tendance
+  titre: À compléter
+  phrase: Une phrase sur ce qui m'a plu.

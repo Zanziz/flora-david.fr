@@ -1,0 +1,202 @@
+---
+/*
+ * Page À propos : présentation, parcours, formation, outils, puis
+ * l'encart « Mes derniers coups de cœur ».
+ */
+import { Image } from 'astro:assets';
+import { getEntry, render } from 'astro:content';
+import CoupsDeCoeur from '../components/CoupsDeCoeur.astro';
+import Base from '../layouts/Base.astro';
+import { getSite } from '../lib/contenu';
+
+const site = await getSite();
+const page = (await getEntry('aPropos', 'a-propos'))!;
+const { description, portrait, parcours, formation, outils } = page.data;
+const { Content } = await render(page);
+---
+
+<Base titre="À propos" description={description} image={portrait?.src}>
+	<div class="a-propos">
+		<header class="a-propos__entete">
+			<h1 class="a-propos__titre">À propos</h1>
+		</header>
+
+		<div class="a-propos__presentation">
+			{
+				portrait && (
+					<Image
+						class="a-propos__portrait"
+						src={portrait.src}
+						alt={portrait.alt}
+						widths={[400, 800, 1200]}
+						sizes="(min-width: 64rem) 28vw, 92vw"
+					/>
+				)
+			}
+			<div class="prose a-propos__texte">
+				<Content />
+				<p class="surtitre">Basée à {site.ville}</p>
+			</div>
+		</div>
+
+		<section class="a-propos__section" aria-labelledby="titre-parcours">
+			<h2 id="titre-parcours" class="a-propos__sous-titre">Parcours</h2>
+			<ol class="parcours">
+				{
+					parcours.map((etape) => (
+						<li class="parcours__etape">
+							<p class="parcours__periode surtitre">{etape.periode}</p>
+							<div class="parcours__detail">
+								<h3 class="parcours__poste">
+									{etape.poste}
+									<span class="parcours__entreprise"> · {etape.entreprise}</span>
+								</h3>
+								{etape.contexte && <p class="parcours__contexte">{etape.contexte}</p>}
+								{etape.resultat && <p class="parcours__resultat">{etape.resultat}</p>}
+							</div>
+						</li>
+					))
+				}
+			</ol>
+		</section>
+
+		<section class="a-propos__section" aria-labelledby="titre-formation">
+			<h2 id="titre-formation" class="a-propos__sous-titre">Formation</h2>
+			<ul class="formation">
+				{
+					formation.map((diplome) => (
+						<li>
+							<span class="formation__diplome">{diplome.diplome}</span>
+							<span class="formation__ecole">
+								{diplome.ecole}, {diplome.annee}
+							</span>
+						</li>
+					))
+				}
+			</ul>
+		</section>
+
+		<section class="a-propos__section" aria-labelledby="titre-outils">
+			<h2 id="titre-outils" class="a-propos__sous-titre">Outils</h2>
+			<ul class="outils">
+				{outils.map((outil) => <li>{outil}</li>)}
+			</ul>
+		</section>
+
+		<CoupsDeCoeur />
+	</div>
+</Base>
+
+<style>
+	.a-propos {
+		display: grid;
+		gap: var(--espace-6);
+		width: 100%;
+		max-width: var(--largeur-max);
+		margin-inline: auto;
+		padding: var(--espace-6) var(--marge-page) 0;
+	}
+
+	.a-propos__titre {
+		font-size: var(--texte-xxl);
+	}
+
+	.a-propos__presentation {
+		display: grid;
+		gap: var(--espace-5);
+		align-items: start;
+	}
+
+	.a-propos__texte {
+		font-size: var(--texte-l);
+		line-height: 1.45;
+	}
+
+	.a-propos__texte .surtitre {
+		margin-top: var(--espace-4);
+	}
+
+	.a-propos__section {
+		display: grid;
+		gap: var(--espace-4);
+		padding-top: var(--espace-5);
+		border-top: 1px solid var(--couleur-filet);
+	}
+
+	.a-propos__sous-titre {
+		font-size: var(--texte-l);
+	}
+
+	.parcours,
+	.formation,
+	.outils {
+		padding: 0;
+		list-style: none;
+	}
+
+	.parcours {
+		display: grid;
+		gap: var(--espace-5);
+	}
+
+	.parcours__etape {
+		display: grid;
+		gap: var(--espace-2);
+	}
+
+	.parcours__detail {
+		display: grid;
+		gap: var(--espace-2);
+		max-width: var(--largeur-texte);
+	}
+
+	.parcours__poste {
+		font-size: var(--texte-m);
+		line-height: 1.3;
+	}
+
+	.parcours__entreprise {
+		font-family: var(--police-texte);
+		font-weight: var(--graisse-texte);
+	}
+
+	.parcours__contexte {
+		color: var(--couleur-texte-doux);
+	}
+
+	.parcours__resultat {
+		font-family: var(--police-titre);
+		font-weight: var(--graisse-titre);
+	}
+
+	.formation {
+		display: grid;
+		gap: var(--espace-3);
+	}
+
+	.formation li {
+		display: grid;
+	}
+
+	.formation__ecole {
+		color: var(--couleur-texte-doux);
+	}
+
+	.outils {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--espace-2) var(--espace-4);
+		max-width: var(--largeur-texte);
+	}
+
+	@media (min-width: 64rem) {
+		.a-propos__presentation:has(:global(.a-propos__portrait)) {
+			grid-template-columns: minmax(0, 28%) 1fr;
+		}
+
+		.parcours__etape {
+			grid-template-columns: 12rem 1fr;
+			gap: var(--espace-4);
+		}
+	}
+</style>

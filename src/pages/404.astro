@@ -1,0 +1,30 @@
+---
+import Sommaire from '../components/Sommaire.astro';
+import Base from '../layouts/Base.astro';
+import { getThemes } from '../lib/contenu';
+
+const themes = await getThemes();
+---
+
+<Base titre="Page introuvable" noindex>
+	<div class="introuvable">
+		<h1 class="introuvable__titre">Cette page n'existe pas.</h1>
+		<p><a href="/">Retour à l'accueil</a></p>
+		<Sommaire themes={themes} />
+	</div>
+</Base>
+
+<style>
+	.introuvable {
+		display: grid;
+		gap: var(--espace-5);
+		width: 100%;
+		max-width: var(--largeur-max);
+		margin-inline: auto;
+		padding: var(--espace-6) var(--marge-page) 0;
+	}
+
+	.introuvable__titre {
+		font-size: var(--texte-xl);
+	}
+</style>

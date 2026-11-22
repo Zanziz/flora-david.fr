@@ -1,0 +1,67 @@
+---
+/*
+ * Sommaire des thèmes, numéroté comme dans un magazine.
+ */
+import type { CollectionEntry } from 'astro:content';
+import { numero } from '../lib/contenu';
+
+interface Props {
+	themes: CollectionEntry<'themes'>[];
+}
+
+const { themes } = Astro.props;
+---
+
+<nav class="sommaire" aria-labelledby="sommaire-titre">
+	<h2 id="sommaire-titre" class="sommaire__titre surtitre">Sommaire</h2>
+	<ol class="sommaire__liste">
+		{
+			themes.map((theme, index) => (
+				<li>
+					<a href={`/${theme.id}`}>
+						<span class="sommaire__numero">{numero(index + 1)}</span>
+						<span class="sommaire__libelle">{theme.data.titre}</span>
+					</a>
+				</li>
+			))
+		}
+	</ol>
+</nav>
+
+<style>
+	.sommaire__liste {
+		padding: 0;
+		margin-top: var(--espace-3);
+		list-style: none;
+		border-top: 1px solid var(--couleur-filet);
+	}
+
+	.sommaire__liste a {
+		display: flex;
+		align-items: baseline;
+		gap: var(--espace-4);
+		padding-block: var(--espace-3);
+		border-bottom: 1px solid var(--couleur-filet);
+		text-decoration: none;
+	}
+
+	.sommaire__numero {
+		font-size: var(--texte-s);
+		color: var(--couleur-texte-doux);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.sommaire__libelle {
+		font-family: var(--police-titre);
+		font-weight: var(--graisse-titre);
+		font-size: var(--texte-xl);
+		line-height: var(--interligne-titre);
+	}
+
+	@media (hover: hover) {
+		.sommaire__liste a:hover .sommaire__libelle {
+			text-decoration: underline;
+			text-decoration-thickness: 2px;
+		}
+	}
+</style>
