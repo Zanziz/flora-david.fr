@@ -2,9 +2,19 @@
 
 Portfolio de Flora David. Site statique fait avec [Astro](https://astro.build), hébergé sur Netlify.
 
+## Récupérer le projet (une seule fois)
+
+Il faut un compte GitHub avec accès à ce repo, [Git](https://git-scm.com) et [Node.js](https://nodejs.org) version 24 (prendre la version « LTS »). Puis, dans un terminal :
+
+```bash
+git clone https://github.com/Zanziz/flora-david.fr.git
+```
+
+Le projet est copié dans un dossier `flora-david.fr`. C'est ce dossier qu'on ouvre ensuite dans Claude Code ou Codex.
+
 ## Lancer le site sur son ordinateur
 
-Il faut [Node.js](https://nodejs.org) version 24 (prendre la version « LTS »). Ensuite, dans le dossier du projet :
+Dans le dossier du projet :
 
 ```bash
 npm install
