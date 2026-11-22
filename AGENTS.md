@@ -11,6 +11,7 @@ Pour changer une règle, modifie ce fichier, pas `CLAUDE.md`.
 - En 10 secondes, le visiteur doit comprendre que Flora crée de l'image et de l'identité de marque, et qu'elle relie toujours la création à des résultats business.
 - Site en français uniquement.
 - **Flora n'est pas développeuse.** Elle fait évoluer le site en te parlant. Explique simplement et demande avant toute action risquée.
+- **Ce qui reste à faire est listé dans `A-FAIRE.md`.** Consulte-le en début de session. Coche une tâche seulement quand Flora a validé le résultat et qu'il est en ligne.
 
 ## 2. Structure du site
 

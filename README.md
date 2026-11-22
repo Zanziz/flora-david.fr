@@ -64,3 +64,4 @@ Chaque push sur `main` déclenche une mise en ligne, et le forfait gratuit de Ne
 ## Règles du projet
 
 Les règles complètes et les procédures (ajouter un projet, modifier un texte…) sont dans [AGENTS.md](AGENTS.md).
+Ce qui reste à faire est listé dans [A-FAIRE.md](A-FAIRE.md).
