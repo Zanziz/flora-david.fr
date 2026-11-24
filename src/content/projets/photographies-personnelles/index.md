@@ -1,26 +1,15 @@
 ---
-titre: Photographies personnelles
-marque: Éditées par David & David Studio
-# annee: à compléter
+titre: Photographies personnelles - Éditées par David & David Studio
 theme: photographie
 ordre: 3
 galerie:
-  - format: plein
-    images:
-      - src: ./perso-01.jpg
-        alt: Photographie d'architecture au Maroc, 1.
   - format: triptyque
     images:
+      - src: ./perso-01.jpg
+        alt: Balcons bleu vif et auvent jaune photographiés en contre-plongée.
       - src: ./perso-02.jpg
-        alt: Façade colorée au Maroc, 2.
+        alt: Façade claire de l’Hôtel Péron et balcons arrondis sous un ciel bleu.
       - src: ./perso-03.jpg
-        alt: Façade colorée au Maroc, 3.
-      - src: ./perso-04.jpg
-        alt: Façade colorée au Maroc, 4.
-  - format: plein
-    images:
-      - src: ./perso-05.jpg
-        alt: Photographie de voyage au Maroc, 5.
+        alt: Tapis à motifs suspendus sur un mur rose, sous un palmier.
+    proportion: vertical
 ---
-
-Architecture et voyage : façades et couleurs du Maroc. Une sélection de ces photos a été éditée en affiches par David & David Studio.

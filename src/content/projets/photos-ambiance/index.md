@@ -1,21 +1,17 @@
 ---
-titre: Photos d'ambiance
-marque: David & David Studio
-# annee: à compléter
+titre: Photos d’ambiance - David & David Studio
 theme: photographie
-ordre: 2
-role: Prise de vue et retouche
+ordre: 1
 galerie:
-  - format: plein
+  - format: triptyque
     images:
       - src: ./dds-ambiance-01.jpg
-        alt: Affiches David & David Studio accrochées dans un intérieur, 1.
-  - format: diptyque
-    images:
+        alt: Deux affiches aux tons turquoise et rose reposent sur un meuble blanc.
+        cadrage: 50% 62%
       - src: ./dds-ambiance-02.jpg
-        alt: Affiches David & David Studio accrochées dans un intérieur, 2.
+        alt: Affiche au trait noir posée près d’une cheminée, à côté d’un bouquet.
       - src: ./dds-ambiance-03.jpg
-        alt: Affiches David & David Studio accrochées dans un intérieur, 3.
+        alt: Photographie encadrée d’un palmier au-dessus d’un fauteuil en bois clair.
+        cadrage: 50% 48%
+serie: Product & Lifestyle Photography
 ---
-
-Les affiches mises en scène dans des intérieurs.

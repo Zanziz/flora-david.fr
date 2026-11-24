@@ -149,3 +149,23 @@ a {
 		scroll-behavior: auto !important;
 	}
 }
+
+.mots-cles {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: start;
+	gap: var(--espace-2);
+	padding: 0;
+	list-style: none;
+}
+.mots-cles li,
+.pastille {
+	display: grid;
+	place-items: center;
+	padding: var(--espace-1) var(--espace-3);
+	border: 1px solid currentColor;
+	border-radius: var(--rayon-pastille);
+	font-size: var(--texte-s);
+	line-height: 1.15;
+	text-align: center;
+}
