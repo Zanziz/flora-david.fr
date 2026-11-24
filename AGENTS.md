@@ -60,7 +60,7 @@ src/
 ├── lib/                    ← fonctions de lecture du contenu
 ├── pages/                  ← une page = une adresse du site
 └── styles/                 ← design system : tokens.css (couleurs, polices, espacements) et global.css
-public/                     ← favicon, robots.txt (pas d'images de contenu ici)
+public/                     ← favicons, robots.txt (pas d'images de contenu ici)
 scripts/                    ← outils (préparation des images)
 _local/                     ← fichiers de travail de Flora, jamais publiés
 ```
@@ -158,6 +158,14 @@ galerie:
 ### Mettre à jour les coups de cœur
 
 Modifie `src/content/coups-de-coeur.yaml` : catégorie, titre, auteur, une phrase. Garde entre 3 et 6 éléments. Pas de date.
+
+### Changer le favicon
+
+Le favicon est l'icône du site dans l'onglet du navigateur : aujourd'hui, une tulipe. Il faut partir d'une image carrée en PNG, sur fond transparent, d'au moins 512 px. Elle sert à générer trois fichiers dans `public/` :
+
+- `favicon.ico` : 16, 32 et 48 px ;
+- `favicon-192.png` : 192 px, fond transparent ;
+- `apple-touch-icon.png` : 180 px, sur le fond du site (iOS remplace la transparence par du noir).
 
 ### Changer les photos de l'accueil
 

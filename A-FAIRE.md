@@ -35,7 +35,7 @@ Fichiers à fournir par Flora, de préférence les originaux en haute définitio
 
 À faire avant de diffuser largement le lien.
 
-- [ ] **Favicon** : remplacer le logo d'Astro qui s'affiche dans l'onglet du navigateur (`public/favicon.svg` et `public/favicon.ico`).
+- [x] **Favicon** : une tulipe remplace le logo d'Astro dans l'onglet du navigateur.
 - [ ] **Contrôle qualité** : score Lighthouse mobile à 90 ou plus, navigation au clavier, contrastes. À refaire une fois les vraies images en place.
 - [ ] **Image de partage** : vérifier l'aperçu du lien sur LinkedIn et WhatsApp, une fois la vraie photo d'accueil en place.
 
