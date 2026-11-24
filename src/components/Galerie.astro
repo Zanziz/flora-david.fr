@@ -6,6 +6,7 @@ type Bloc = CollectionEntry<'projets'>['data']['galerie'][number];
 interface Props { blocs: Bloc[]; projetId: string }
 
 const { blocs, projetId } = Astro.props;
+const galerieMarques = projetId === 'direction-artistique-ia';
 const videos = import.meta.glob<string>('../content/projets/*/*.mp4', {
 	eager: true, query: '?url', import: 'default',
 });
@@ -17,6 +18,7 @@ function sourceVideo(nom: string) {
 const largeurs = (largeur: number) => [...[480, 800, 1200, 1600, 2000, 2400].filter((n) => n < largeur), largeur];
 
 function tailles(bloc: Bloc) {
+	if (galerieMarques) return '(min-width: 90rem) 21rem, (min-width: 48rem) 23vw, 46vw';
 	switch (bloc.format) {
 		case 'plein': return '(min-width: 90rem) 84rem, 94vw';
 		case 'planches': return '(min-width: 60rem) 12rem, (min-width: 48rem) 20vw, 43vw';
@@ -28,7 +30,7 @@ function tailles(bloc: Bloc) {
 }
 ---
 
-<div class:list={['galerie', { 'galerie--marques': projetId === 'direction-artistique-ia' }]}>
+<div class:list={['galerie', { 'galerie--marques': galerieMarques }]}>
 	{blocs.map((bloc) => (
 		<div class:list={['bloc', `bloc--${bloc.format}`, bloc.proportion && `bloc--${bloc.proportion}`]}>
 			{bloc.titre && <h3 class="bloc__titre">{bloc.titre}</h3>}
@@ -93,13 +95,8 @@ function tailles(bloc: Bloc) {
 	.bloc__images--films figure > video { aspect-ratio: 9 / 16; object-fit: contain; }
 	.bloc figure > video:fullscreen { object-fit: contain; }
 	.bloc--vertical { --cadre: 2 / 3; }
-	.galerie--marques {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: var(--gouttiere);
-		align-items: start;
-	}
-	.galerie--marques .bloc { --cadre: 3 / 4; }
-	.galerie--marques .bloc__images { grid-template-columns: minmax(0, 1fr); }
+	.galerie--marques { gap: var(--espace-4); }
+	.galerie--marques .bloc { --cadre: 4 / 5; }
 	/* Une planche de références, en retrait par rapport aux grandes galeries. */
 	.bloc--planches {
 		--cadre: 3 / 2;
@@ -144,6 +141,11 @@ function tailles(bloc: Bloc) {
 	.bloc--texte { padding-block: var(--espace-4); }
 
 	@media (min-width: 48rem) {
+		.galerie--marques {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: var(--gouttiere);
+			align-items: start;
+		}
 		.bloc--texte { grid-template-columns: 1fr 1fr; }
 
 		.bloc--triptyque .bloc__images, .bloc--collage .bloc__images { grid-template-columns: repeat(3, minmax(0, 1fr)); }

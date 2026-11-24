@@ -15,7 +15,7 @@ galerie:
       - src: ./sacrecoeur-campagne-04.jpg
         alt: Portrait d’une femme rousse en chemise bleue devant un fond bleu vif.
     legende: Conception et direction artistique d'une campagne éditoriale pour incarner l'univers libre et
-      spontané de la marque.
+      spontané de la marque. Photographies © Chloé Lapeyssonie.
     motsCles:
       - Concept créatif
       - Moodboard

@@ -42,7 +42,7 @@ const imagePartage = projets.flatMap((projet) => projet.data.galerie).find((bloc
 
 		{
 			projets.length > 0 ? (
-				<div class="theme__projets">
+				<div class:list={['theme__projets', { 'theme__projets--photo': theme.id === 'photographie' }]}>
 					{Array.from(groupes.values(), (groupe) => groupe[0].data.serie ? (
 						<section class="theme__serie">
 							<h2>{groupe[0].data.serie}</h2>
@@ -93,7 +93,8 @@ const imagePartage = projets.flatMap((projet) => projet.data.galerie).find((bloc
 		gap: var(--espace-7);
 	}
 
-	.theme__serie { display: grid; gap: var(--espace-5); }
+	.theme__serie { display: grid; }
+	.theme__serie, .theme__projets--photo { gap: var(--espace-5); }
 	.theme__serie > h2 { font-size: var(--texte-xl); }
 
 	.theme__suivant {
