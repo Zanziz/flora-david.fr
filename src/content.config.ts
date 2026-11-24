@@ -166,12 +166,15 @@ const coupsDeCoeur = defineCollection({
 				...element,
 			})),
 	}),
-	schema: z.object({
-		categorie: z.string(),
-		titre: z.string(),
-		auteur: z.string().optional(),
-		phrase: z.string().optional(),
-	}),
+	schema: ({ image }) =>
+		z.object({
+			categorie: z.string(),
+			titre: z.string(),
+			auteur: z.string().optional(),
+			phrase: z.string().optional(),
+			image: imageAvecAlt(image).optional(),
+			lien: z.url({ error: 'Le lien doit être une adresse complète, commençant par https://' }).optional(),
+		}),
 });
 
 /** Les mentions légales : src/content/mentions-legales.md */

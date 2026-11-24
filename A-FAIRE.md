@@ -12,9 +12,9 @@ Cette liste rassemble ce qui reste à faire sur le site. Les règles de travail 
 
 ## Contenu
 
-Textes à fournir ou à valider par Flora. Le premier point est visible en ligne dès maintenant.
+Textes à fournir ou à valider par Flora.
 
-- [ ] **Coups de cœur** : remplacer les 4 exemples « À compléter » affichés sur la page À propos (`src/content/coups-de-coeur.yaml`). En attendant, vider la liste masque l'encart.
+- [x] **Coups de cœur** : trois coups de cœur, avec image et lien, remplacent les exemples « À compléter ».
 - [ ] **Textes des projets et accroche** : relire et raccourcir pour le web.
 - [ ] **Introductions des thèmes** : Art Direction, Communication et E-commerce n'en ont pas encore (`src/content/themes.yaml`).
 - [ ] **Années** : à compléter dans 7 projets (ligne `# annee: à compléter`).

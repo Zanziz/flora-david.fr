@@ -53,6 +53,7 @@ src/
 │   ├── a-propos/
 │   │   └── index.md        ← présentation, parcours, formation, outils
 │   ├── coups-de-coeur.yaml ← l'encart « Mes derniers coups de cœur »
+│   ├── coups-de-coeur/     ← ses visuels (categorie-titre.jpg)
 │   └── mentions-legales.md
 ├── content.config.ts       ← la liste des champs autorisés pour chaque contenu
 ├── components/             ← les briques de mise en page
@@ -157,7 +158,11 @@ galerie:
 
 ### Mettre à jour les coups de cœur
 
-Modifie `src/content/coups-de-coeur.yaml` : catégorie, titre, auteur, une phrase. Garde entre 3 et 6 éléments. Pas de date.
+Modifie `src/content/coups-de-coeur.yaml` : catégorie, titre, auteur, une phrase, et en option un lien et une image. Garde entre 3 et 6 éléments. Pas de date.
+
+- **Lien** : l'adresse complète (`https://…`) de la bande-annonce, de l'expo ou du morceau. Le titre devient cliquable et s'ouvre dans un nouvel onglet.
+- **Image** : range-la dans `src/content/coups-de-coeur/`, nomme-la `categorie-titre.jpg` (exemple : `film-club-kid.jpg`), lance `npm run images`, et donne-lui un texte alternatif. Toutes les images s'affichent à la même hauteur en gardant leurs proportions : une affiche est plus étroite qu'une photo en paysage.
+- Supprime l'image d'un coup de cœur retiré de la liste, après accord de Flora (règle 6).
 
 ### Changer le favicon
 

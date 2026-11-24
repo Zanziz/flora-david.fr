@@ -5,21 +5,30 @@
 # - titre     : le nom de l'œuvre
 # - auteur    : réalisateur, artiste, lieu… (facultatif)
 # - phrase    : pourquoi j'aime, en une phrase (facultatif)
+# - lien      : adresse complète vers la bande-annonce, l'expo, le morceau… (facultatif)
+# - image     : visuel rangé dans le dossier coups-de-coeur/, nommé categorie-titre.jpg,
+#               avec sa description (alt) (facultatif)
 
 - categorie: Film
-  titre: À compléter
-  auteur: Réalisateur ou réalisatrice
-  phrase: Une phrase sur ce qui m'a plu.
+  titre: Club Kid
+  auteur: Jordan Firstman
+  lien: https://www.youtube.com/watch?v=guKEdb_iRXw
+  image:
+    src: ./coups-de-coeur/film-club-kid.jpg
+    alt: Affiche du film Club Kid, deux hommes dansent dans un halo de lumières colorées.
 
 - categorie: Expo
-  titre: À compléter
-  auteur: Artiste ou lieu
-  phrase: Une phrase sur ce qui m'a plu.
+  titre: Musée sentimental
+  auteur: Musée des Beaux-Arts de Lyon
+  lien: https://www.mba-lyon.fr/fr/fiche-programmation/musee-sentimental
+  image:
+    src: ./coups-de-coeur/expo-musee-sentimental.jpg
+    alt: Mur d'exposition couvert de tableaux, de masques, de sculptures et d'objets anciens.
 
 - categorie: Musique
-  titre: À compléter
-  auteur: Artiste
-
-- categorie: Tendance
-  titre: À compléter
-  phrase: Une phrase sur ce qui m'a plu.
+  titre: La Nocturne
+  auteur: Tiakola & Theodora
+  lien: https://www.youtube.com/watch?v=pHOGDZi2D38
+  image:
+    src: ./coups-de-coeur/musique-la-nocturne.jpg
+    alt: Six personnes assises sur des chaises en plastique bleu devant une façade décrépie.

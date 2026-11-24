@@ -1,7 +1,9 @@
 ---
 /*
- * Encart « Mes derniers coups de cœur ».
+ * Encart « Mes derniers coups de cœur » : une image (facultative),
+ * la catégorie, le titre (lien facultatif), l'auteur et une phrase.
  */
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
 const elements = (await getCollection('coupsDeCoeur')).sort((a, b) => a.id.localeCompare(b.id));
@@ -16,9 +18,26 @@ const elements = (await getCollection('coupsDeCoeur')).sort((a, b) => a.id.local
 			<ul class="coups__liste">
 				{elements.map(({ data }) => (
 					<li class="coups__element">
+						{data.image && (
+							<Image
+								class="coups__image"
+								src={data.image.src}
+								alt={data.image.alt}
+								widths={[240, 480, data.image.src.width].filter((l) => l <= data.image!.src.width)}
+								sizes="(min-width: 64rem) 16rem, 45vw"
+								loading="lazy"
+							/>
+						)}
 						<p class="surtitre">{data.categorie}</p>
 						<p class="coups__oeuvre">
-							{data.titre}
+							{data.lien ? (
+								<a href={data.lien} target="_blank" rel="noopener noreferrer">
+									{data.titre}
+									<span class="visuellement-cache"> (s'ouvre dans un nouvel onglet)</span>
+								</a>
+							) : (
+								data.titre
+							)}
 							{data.auteur && <span class="coups__auteur">, {data.auteur}</span>}
 						</p>
 						{data.phrase && <p class="coups__phrase">{data.phrase}</p>}
@@ -54,11 +73,33 @@ const elements = (await getCollection('coupsDeCoeur')).sort((a, b) => a.id.local
 		align-content: start;
 	}
 
+	/*
+	 * Toutes les images ont la même hauteur et gardent leurs proportions.
+	 * Si la colonne est trop étroite pour une image large, ses bords sont
+	 * légèrement rognés plutôt que de réduire sa hauteur.
+	 */
+	.coups__element :global(.coups__image) {
+		width: auto;
+		max-width: 100%;
+		height: 12rem;
+		margin-bottom: var(--espace-2);
+		object-fit: cover;
+	}
+
 	.coups__oeuvre {
 		font-family: var(--police-titre);
 		font-weight: var(--graisse-titre);
 		font-size: var(--texte-l);
 		line-height: 1.2;
+	}
+
+	.coups__oeuvre a {
+		text-decoration: none;
+	}
+
+	.coups__oeuvre a:hover,
+	.coups__oeuvre a:focus-visible {
+		text-decoration: underline;
 	}
 
 	.coups__auteur {
