@@ -1,27 +1,17 @@
 ---
-titre: Newsletters
-marque: David & David Studio, Tinsels, Sacrécoeur
-# annee: à compléter
+titre: Email Marketing & CRM
 theme: communication
 ordre: 1
-role: Conception et rédaction des newsletters
 galerie:
   - format: triptyque
+    proportion: newsletter
     images:
-      - src: ./newsletter-dds-01.jpg
-        alt: Newsletter David & David Studio annonçant les soldes à -20 %.
-      - src: ./newsletter-dds-02.jpg
-        alt: Newsletter David & David Studio pour le salon Maison & Objet.
-      - src: ./newsletter-dds-03.jpg
-        alt: Newsletter David & David Studio présentant le catalogue 2022.
-    legende: David & David Studio.
-  - format: diptyque
-    images:
-      - src: ./newsletter-tinsels-01.jpg
-        alt: Newsletter Tinsels.
       - src: ./newsletter-sacrecoeur-01.jpg
-        alt: Newsletter Sacrécoeur.
-    legende: Tinsels et Sacrécoeur.
+        alt: Newsletter Sacrécoeur montrant une mannequin en veste claire devant les montagnes.
+      - src: ./newsletter-dds-01.jpg
+        alt: Newsletter annonçant une remise de 20 % sur le site au-dessus d’une photo de salon.
+      - src: ./newsletter-tinsels-01.jpg
+        alt: Une newsletter Tinsels s’ouvre sur le portrait d’une mannequin devant un rideau métallique.
 ---
 
-Newsletters réalisées avec Mailchimp et Brevo.
+Conception et déploiement de stratégies emailing : newsletters éditoriales, commerciales, scénarios automatisés.

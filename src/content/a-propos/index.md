@@ -24,7 +24,7 @@ parcours:
 
   - poste: Responsable Marketing Digital & Image
     entreprise: AB Créations
-    periode: 2024–2026
+    periode: 2024-2026
     contexte: >-
       Marques de prêt-à-porter féminin Sacrécoeur et Tinsels. Création de l'identité en ligne de Tinsels,
       shootings (repérage, production, direction artistique), lancements de collection, refonte e-commerce.
@@ -32,7 +32,7 @@ parcours:
 
   - poste: Co-fondatrice & Responsable Marketing
     entreprise: David & David Studio
-    periode: 2019–2024
+    periode: 2019-2024
     contexte: >-
       Maison d'édition d'affiches d'art et de photographie. Une marque construite de A à Z :
       direction artistique, catalogues, salons Maison & Objet.
@@ -40,7 +40,7 @@ parcours:
 
   - poste: Consultante & Formatrice Marketing Digital
     entreprise: Freelance
-    periode: 2016–2019
+    periode: 2016-2019
 
 formation:
   - diplome: MBA Web Business & Strategy
@@ -73,4 +73,6 @@ outils:
   - Higgsfield
 ---
 
-Je suis Flora David, spécialiste en marketing digital et communication visuelle. Passionnée d'art et de storytelling, je puise mon inspiration dans l'architecture, le design, la mode et les arts visuels pour créer des contenus percutants et cohérents. Ce portfolio présente une sélection de mes réalisations, témoignant de mon approche créative et de mon savoir-faire.
+Une marque forte, c'est une image que l'on retient et une histoire que l'on a envie de suivre.
+
+Depuis dix ans, j'accompagne des marques de décoration, de mode et de bijouterie premium dans le développement de leur identité, de leur notoriété et de leur performance.

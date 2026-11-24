@@ -1,33 +1,23 @@
 ---
 titre: Refonte e-commerce
-marque: David & David Studio
-# annee: à compléter
 theme: e-commerce
 ordre: 1
-role: Pilotage de la refonte du site
-resultat:
-  valeur: "×2"
-  libelle: ventes en ligne en deux ans
 galerie:
   - format: plein
     images:
       - src: ./dds-zoning-01.jpg
-        alt: Zoning de la page d'accueil du site David & David Studio.
-    legende: Zoning de la page d'accueil.
+        alt: Schéma en trois volets de l’accueil avec les emplacements des collections, des produits et des contenus
+          éditoriaux.
+    titre: Zoning - Home Page David & David Studio
   - format: plein
     images:
       - src: ./dds-maquette-01.jpg
-        alt: Maquette finale de la page d'accueil du site David & David Studio.
-    legende: Maquette de la page d'accueil.
-  - format: triptyque
-    images:
-      - src: ./dds-visuel-produit-01.jpg
-        alt: Affiche David & David Studio mise en situation dans un intérieur, image créée avec Midjourney, 1.
-      - src: ./dds-visuel-produit-02.jpg
-        alt: Affiche David & David Studio mise en situation dans un intérieur, image créée avec Midjourney, 2.
-      - src: ./dds-visuel-produit-03.jpg
-        alt: Affiche David & David Studio mise en situation dans un intérieur, image créée avec Midjourney, 3.
-    legende: Visuels produits pour le nouveau site, créés avec Midjourney.
+        alt: Maquette du site marchand avec un grand paysage, des sélections d’affiches et des intérieurs décorés.
+    titre: Maquette - Home Page David & David Studio
+marque: David & David Studio
+apercu:
+  src: ./dds-lancement.jpg
+  alt: Deux captures superposées des collections d’affiches et des pages de la boutique David & David Studio.
 ---
 
-Audit du site précédent, optimisation du parcours client, création des maquettes, contenus optimisés pour le référencement et création des visuels produits.
+Refonte complète du site marchand : audit, conception UX/UI, arborescence, contenus SEO et création des visuels. Un parcours repensé pour mieux valoriser les collections et faciliter l'achat.

@@ -1,29 +1,24 @@
 ---
-titre: Campagne Sacrécoeur
+titre: Campaign Art Direction
 marque: Sacrécoeur
-# annee: à compléter
 theme: art-direction
 ordre: 1
-role: Direction artistique de la campagne
 galerie:
-  - format: plein
+  - format: quadriptyque
     images:
       - src: ./sacrecoeur-campagne-01.jpg
-        alt: Campagne Sacrécoeur, photo 1.
-  - format: diptyque
-    images:
+        alt: Une mannequin en tenue rayée bleue cache son visage derrière un journal déplié.
       - src: ./sacrecoeur-campagne-02.jpg
-        alt: Campagne Sacrécoeur, photo 2.
+        alt: À table, une femme en chemise à carreaux roses découpe son petit déjeuner.
       - src: ./sacrecoeur-campagne-03.jpg
-        alt: Campagne Sacrécoeur, photo 3.
-  - format: diptyque
-    images:
+        alt: Une femme en vert allongée sur des coussins rayés regarde l’objectif.
       - src: ./sacrecoeur-campagne-04.jpg
-        alt: Campagne Sacrécoeur, photo 4.
-      - src: ./sacrecoeur-campagne-05.jpg
-        alt: Campagne Sacrécoeur, photo 5.
+        alt: Portrait d’une femme rousse en chemise bleue devant un fond bleu vif.
+    legende: Conception et direction artistique d'une campagne éditoriale pour incarner l'univers libre et
+      spontané de la marque.
+    motsCles:
+      - Concept créatif
+      - Moodboard
+      - Production
+      - Direction Artistique
 ---
-
-> La fille Sacrécoeur : libre, désinvolte, légère, singulière, joueuse, espiègle, pleine de vie, solaire, naturelle.
-
-Moodboard, repérage des lieux, production, choix des looks et direction artistique du shooting.

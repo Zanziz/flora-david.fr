@@ -15,6 +15,8 @@ type ImageFn = SchemaContext['image'];
 const imageAvecAlt = (image: ImageFn) =>
 	z.object({
 		src: image(),
+		video: z.string().regex(/^[a-z0-9-]+\.mp4$/).optional(),
+		cadrage: z.string().regex(/^\d{1,3}% \d{1,3}%$/).optional(),
 		alt: z
 			.string({ error: 'Chaque image doit avoir un texte alternatif (alt).' })
 			.min(1, 'Le texte alternatif (alt) ne peut pas être vide.'),
@@ -22,27 +24,38 @@ const imageAvecAlt = (image: ImageFn) =>
 
 /** Nombre d'images attendu pour chaque format de bloc de galerie. */
 const FORMATS = {
+	texte: { min: 0, max: 0 },
+	planches: { min: 4, max: 4 },
 	plein: { min: 1, max: 1 },
 	diptyque: { min: 2, max: 2 },
 	triptyque: { min: 3, max: 3 },
+	quadriptyque: { min: 4, max: 4 },
 	collage: { min: 3, max: 6 },
 } as const;
+
+const repere = z.object({ titre: z.string(), texte: z.string() });
 
 const blocGalerie = (image: ImageFn) =>
 	z
 		.object({
-			format: z.enum(['plein', 'diptyque', 'triptyque', 'collage']),
+			format: z.enum(['texte', 'planches', 'plein', 'diptyque', 'triptyque', 'quadriptyque', 'collage']),
 			images: z.array(imageAvecAlt(image)),
+			proportion: z.enum(['vertical', 'capture', 'newsletter']).optional(),
 			legende: z.string().optional(),
+			titre: z.string().optional(),
+			motsCles: z.array(z.string()).optional(),
+			reperes: z.array(repere).optional(),
 		})
 		.refine(
 			(bloc) => {
 				const { min, max } = FORMATS[bloc.format];
-				return bloc.images.length >= min && bloc.images.length <= max;
+				const n = bloc.images.length;
+				if (bloc.format === 'planches' && bloc.reperes?.length !== n) return false;
+				return n >= min && n <= max;
 			},
 			{
 				error:
-					"Nombre d'images incorrect pour ce format : plein = 1, diptyque = 2, triptyque = 3, collage = 3 à 6.",
+					"Vérifie le nombre de visuels du bloc et les quatre légendes du format planches.",
 			},
 		);
 
@@ -82,11 +95,16 @@ const projets = defineCollection({
 	schema: ({ image }) =>
 		z.object({
 			titre: z.string(),
-			marque: z.string(),
+			marque: z.string().optional(),
+			serie: z.string().optional(),
+			etiquette: z.string().optional(),
+			apercu: imageAvecAlt(image).optional(),
+			etapes: z.array(repere).optional(),
 			annee: periode.optional(),
 			theme: reference('themes'),
 			ordre: z.number(),
 			role: z.string().optional(),
+			outils: z.array(z.string()).optional(),
 			resultat: z
 				.object({
 					valeur: z.string(),
@@ -94,7 +112,7 @@ const projets = defineCollection({
 				})
 				.optional(),
 			brouillon: z.boolean().default(false),
-			galerie: z.array(blocGalerie(image)).min(1, 'Un projet doit avoir au moins un bloc de galerie.'),
+			galerie: z.array(blocGalerie(image)).default([]),
 		}),
 });
 

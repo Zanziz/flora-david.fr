@@ -4,39 +4,65 @@
  * texte, puis galerie.
  */
 import { render, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 import Galerie from './Galerie.astro';
 
 interface Props {
 	projet: CollectionEntry<'projets'>;
+	dansSerie?: boolean;
 }
 
-const { projet } = Astro.props;
-const { titre, marque, annee, role, resultat, galerie } = projet.data;
+const { projet, dansSerie = false } = Astro.props;
+const { titre, marque, annee, role, resultat, galerie, etapes } = projet.data;
 const { Content } = await render(projet);
+const { etiquette, apercu, outils } = projet.data;
+const Titre = dansSerie ? 'h3' : 'h2';
 const idTitre = `${projet.id}-titre`;
 ---
 
-<article class="projet" id={projet.id} aria-labelledby={idTitre}>
-	<header class="projet__entete">
-		<p class="projet__meta surtitre">
-			{marque}
-			{annee && <span> · {annee}</span>}
-		</p>
-		<h2 class="projet__titre" id={idTitre}>{titre}</h2>
-		{role && <p class="projet__role">{role}</p>}
-		{
-			resultat && (
-				<p class="projet__resultat">
-					<span class="projet__resultat-valeur">{resultat.valeur}</span>
-					<span class="projet__resultat-libelle">{resultat.libelle}</span>
-				</p>
-			)
-		}
-	</header>
-	<div class="projet__texte prose">
-		<Content />
+<article class:list={['projet', { 'projet--serie': dansSerie, 'projet--apercu': apercu }]} id={projet.id} aria-labelledby={idTitre}>
+	<div class="projet__intro">
+		<header class="projet__entete">
+			{(marque || annee) && <p class="projet__meta surtitre">
+				{marque}
+				{annee && <span> · {annee}</span>}
+			</p>}
+			<Titre class="projet__titre" id={idTitre}>{titre}</Titre>
+			{etiquette && <p class="projet__etiquette pastille">{etiquette}</p>}
+			{role && <p class="projet__role">{role}</p>}
+			{
+				resultat && (
+					<p class="projet__resultat">
+						<span class="projet__resultat-valeur">{resultat.valeur}</span>
+						<span class="projet__resultat-libelle">{resultat.libelle}</span>
+					</p>
+				)
+			}
+		</header>
+		{(projet.body?.trim() || outils?.length) && (
+			<div class:list={['projet__texte', { 'projet__texte--outils': outils?.length }]}>
+				<div class="prose"><Content /></div>
+				{outils && outils.length > 0 && (
+					<ul class="mots-cles" aria-label="Outils">
+						{outils.map((outil) => <li>{outil}</li>)}
+					</ul>
+				)}
+			</div>
+		)}
+		{apercu && <Image class="projet__visuel" src={apercu.src} alt={apercu.alt} widths={[400, 640, apercu.src.width]} sizes="(min-width: 48rem) 32vw, 90vw" loading="lazy" />}
 	</div>
-	<Galerie blocs={galerie} />
+	{etapes && (
+		<ol class="etapes">
+			{etapes.map((etape, i) => (
+				<li>
+					<span class="surtitre" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+					<h3>{etape.titre}</h3>
+					<p>{etape.texte}</p>
+				</li>
+			))}
+		</ol>
+	)}
+	{galerie.length > 0 && <Galerie projetId={projet.id} blocs={galerie} />}
 </article>
 
 <style>
@@ -47,6 +73,31 @@ const idTitre = `${projet.id}-titre`;
 		border-top: 1px solid var(--couleur-filet);
 	}
 
+	.projet__intro, .etapes {
+		display: grid;
+		align-items: start;
+		gap: var(--espace-4);
+	}
+
+	.etapes {
+		list-style: none;
+		padding: 0;
+	}
+
+	.etapes li {
+		border-top: 1px solid var(--couleur-filet);
+		padding-top: var(--espace-3);
+		display: grid;
+		gap: var(--espace-2);
+	}
+
+	.etapes h3 { font-size: var(--texte-l); }
+
+	@media (min-width: 48rem) {
+		.projet__intro { grid-template-columns: 1fr 1fr; }
+		.etapes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	}
+
 	.projet__entete {
 		display: grid;
 		gap: var(--espace-2);
@@ -54,6 +105,29 @@ const idTitre = `${projet.id}-titre`;
 
 	.projet__titre {
 		font-size: var(--texte-xl);
+	}
+
+	.projet--serie { gap: var(--espace-3); padding-top: var(--espace-4); }
+	.projet--serie .projet__intro { grid-template-columns: 1fr; }
+	#photographies-personnelles .projet__titre,
+	.projet--serie .projet__titre { font-size: var(--texte-l); }
+	#tinsels-brand-content .projet__texte .prose,
+	#supports-catalogues .projet__texte .prose,
+	#newsletters .projet__texte .prose,
+	#refonte-david-david-studio .projet__texte .prose,
+	.projet__texte--outils .prose {
+		font-size: var(--texte-s);
+	}
+	.projet__texte--outils .mots-cles { margin-top: var(--espace-3); }
+	.projet__etiquette { justify-self: start; }
+	.projet__intro :global(.projet__visuel) { width: min(100%, 24rem); }
+	@media (min-width: 48rem) {
+		.projet--apercu .projet__intro { grid-template-rows: auto 1fr; }
+		.projet--apercu .projet__texte { grid-column: 1; }
+		.projet--apercu .projet__intro :global(.projet__visuel) {
+			grid-area: 1 / 2 / 3 / 3;
+			justify-self: center;
+		}
 	}
 
 	.projet__role {

@@ -1,18 +1,8 @@
 ---
-# Projet en préparation : il n'est pas publié tant que « brouillon » vaut true.
-# Quand les vraies images sont prêtes, remplace-les et passe « brouillon » à false.
-titre: Supports & catalogues
-marque: David & David Studio
-annee: 2019–2024
-theme: communication
+titre: Editorial Content & Design
+theme: social-media-brand-content
 ordre: 2
-role: Création des catalogues, supports commerciaux et dossiers de presse
-brouillon: true
-galerie:
-  - format: plein
-    images:
-      - src: ./catalogue-01.jpg
-        alt: Catalogue David & David Studio.
+galerie: []
 ---
 
-Catalogues, supports commerciaux et dossiers de presse. Organisation des salons Maison & Objet et visual merchandising.
+Conception éditoriale, rédaction et mise en page de catalogues de collections, dossiers de presse et supports commerciaux.

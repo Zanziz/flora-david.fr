@@ -1,19 +1,18 @@
 ---
-titre: Photos produits
-marque: David & David Studio
-# annee: à compléter
+titre: Photos produits - David & David Studio
 theme: photographie
-ordre: 1
-role: Prise de vue et retouche
+ordre: 2
 galerie:
   - format: triptyque
     images:
       - src: ./dds-produit-01.jpg
-        alt: Cadre David & David Studio photographié en studio.
+        alt: Gros plan sur le bord en bois naturel d’un cadre David & David Studio.
+        cadrage: 50% 60%
       - src: ./dds-produit-02.jpg
-        alt: Affiche David & David Studio photographiée en studio.
+        alt: Affiche blanche suspendue entre deux baguettes noires sur un mur clair.
+        cadrage: 50% 48%
       - src: ./dds-produit-03.jpg
-        alt: Présentoir d'affiches David & David Studio.
+        alt: Présentoir blanc incliné contenant une affiche aux couleurs bleues et violettes.
+        cadrage: 54% 50%
+serie: Product & Lifestyle Photography
 ---
-
-Cadres, affiches et présentoir.

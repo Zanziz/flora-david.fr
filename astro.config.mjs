@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { satteri } from '@astrojs/markdown-satteri';
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
@@ -9,5 +10,7 @@ export default defineConfig({
   // Adresses sans « / » final (flora-david.fr/e-commerce), servies sans redirection par Netlify.
   trailingSlash: 'never',
   build: { format: 'file' },
+  // Conserve la ponctuation des textes de Flora à l’affichage.
+  markdown: { processor: satteri({ features: { smartPunctuation: false } }) },
   integrations: [sitemap()],
 });

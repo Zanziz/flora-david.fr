@@ -28,7 +28,8 @@ const projets = await getProjetsDuTheme(theme.id);
 const description = theme.data.intro
 	? resume(theme.data.intro)
 	: resume(`${theme.data.titre} : ${projets.map((projet) => projet.data.titre).join(', ')}. Projets de Flora David.`);
-const imagePartage = projets[0]?.data.galerie[0]?.images[0]?.src;
+const groupes = Map.groupBy(projets, (projet) => projet.data.serie ?? projet.id);
+const imagePartage = projets.flatMap((projet) => projet.data.galerie).find((bloc) => bloc.images.length)?.images[0].src;
 ---
 
 <Base titre={theme.data.titre} description={description} image={imagePartage}>
@@ -42,9 +43,12 @@ const imagePartage = projets[0]?.data.galerie[0]?.images[0]?.src;
 		{
 			projets.length > 0 ? (
 				<div class="theme__projets">
-					{projets.map((projet) => (
-						<ProjetSection projet={projet} />
-					))}
+					{Array.from(groupes.values(), (groupe) => groupe[0].data.serie ? (
+						<section class="theme__serie">
+							<h2>{groupe[0].data.serie}</h2>
+							{groupe.map((projet) => <ProjetSection projet={projet} dansSerie />)}
+						</section>
+					) : <ProjetSection projet={groupe[0]} />)}
 				</div>
 			) : (
 				<p class="theme__vide">Projets à venir.</p>
@@ -88,6 +92,9 @@ const imagePartage = projets[0]?.data.galerie[0]?.images[0]?.src;
 		display: grid;
 		gap: var(--espace-7);
 	}
+
+	.theme__serie { display: grid; gap: var(--espace-5); }
+	.theme__serie > h2 { font-size: var(--texte-xl); }
 
 	.theme__suivant {
 		margin-top: var(--espace-7);
