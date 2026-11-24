@@ -7,7 +7,7 @@ accroche: Créer de l'image, du désir et des ventes.
 # La photo principale, avec sa description (alt).
 photo:
   src: ./accueil-photo.jpg
-  alt: Photo principale de l'accueil (image provisoire).
+  alt: Une femme en chemise bleue repose sur un coussin rose, allongée sur un canapé en velours brun.
 
 # Les photos qui apparaissent au passage de la souris (de 3 à 20), dans cet ordre.
 # Elles sont décoratives : pas besoin de description.

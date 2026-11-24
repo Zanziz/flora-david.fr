@@ -107,7 +107,9 @@ const idTitre = `${projet.id}-titre`;
 		font-size: var(--texte-xl);
 	}
 
+	#photographies-personnelles,
 	.projet--serie { gap: var(--espace-3); padding-top: var(--espace-4); }
+	#photographies-personnelles .projet__intro,
 	.projet--serie .projet__intro { grid-template-columns: 1fr; }
 	#photographies-personnelles .projet__titre,
 	.projet--serie .projet__titre { font-size: var(--texte-l); }
@@ -119,7 +121,10 @@ const idTitre = `${projet.id}-titre`;
 		font-size: var(--texte-s);
 	}
 	.projet__texte--outils .mots-cles { margin-top: var(--espace-3); }
-	.projet__etiquette { justify-self: start; }
+	.projet__etiquette {
+		justify-self: start;
+		margin-block-start: var(--espace-2);
+	}
 	.projet__intro :global(.projet__visuel) { width: min(100%, 24rem); }
 	@media (min-width: 48rem) {
 		.projet--apercu .projet__intro { grid-template-rows: auto 1fr; }
