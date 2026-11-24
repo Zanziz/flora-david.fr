@@ -5,7 +5,13 @@ nom: Flora David
 titre: Marketing & Communication | Brand Management
 ville: Lyon
 
-# Description affichée par Google sous le nom du site (160 caractères maximum conseillés).
+# Description affichée par Google sous le nom du site (155 caractères maximum conseillés).
 description: >-
-  Portfolio de Flora David, marketing & communication et brand management à Lyon.
-  Direction artistique, brand content, e-commerce et photographie.
+  Portfolio de Flora David, marketing et brand management à Lyon : image, identité et contenus
+  pour des marques premium de déco, de mode et de bijou.
+
+# Image d'aperçu quand on partage le lien (LinkedIn, WhatsApp, Slack…) :
+# 1200 × 630 px, en JPG, moins de 300 Ko, rangée dans le dossier partage/.
+imagePartage:
+  src: ./partage/image-partage.jpg
+  alt: Flora David, Portfolio, à côté d'une photo d'une femme endormie sur un canapé en velours brun.

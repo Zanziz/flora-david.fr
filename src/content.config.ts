@@ -67,12 +67,14 @@ const site = defineCollection({
 	loader: file('src/content/site.yaml', {
 		parser: (texte) => [{ id: 'site', ...parse(texte) }],
 	}),
-	schema: z.object({
-		nom: z.string(),
-		titre: z.string(),
-		ville: z.string(),
-		description: z.string(),
-	}),
+	schema: ({ image }) =>
+		z.object({
+			nom: z.string(),
+			titre: z.string(),
+			ville: z.string(),
+			description: z.string(),
+			imagePartage: imageAvecAlt(image).optional(),
+		}),
 });
 
 /** Les thèmes du site : src/content/themes.yaml */

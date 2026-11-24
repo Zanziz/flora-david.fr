@@ -40,7 +40,8 @@ Pour changer une règle, modifie ce fichier, pas `CLAUDE.md`.
 ```
 src/
 ├── content/                ← TOUT le contenu : textes et images
-│   ├── site.yaml           ← nom, titre, ville, description pour Google
+│   ├── site.yaml           ← nom, titre, ville, description pour Google, image de partage
+│   ├── partage/            ← l'image d'aperçu des liens partagés (1200 × 630)
 │   ├── accueil/
 │   │   ├── index.md        ← accroche, photo principale, photos de l'effet
 │   │   └── *.jpg
@@ -163,6 +164,14 @@ Modifie `src/content/coups-de-coeur.yaml` : catégorie, titre, auteur, une phras
 - **Lien** : l'adresse complète (`https://…`) de la bande-annonce, de l'expo ou du morceau. Le titre devient cliquable et s'ouvre dans un nouvel onglet.
 - **Image** : range-la dans `src/content/coups-de-coeur/`, nomme-la `categorie-titre.jpg` (exemple : `film-club-kid.jpg`), lance `npm run images`, et donne-lui un texte alternatif. Toutes les images s'affichent à la même hauteur en gardant leurs proportions : une affiche est plus étroite qu'une photo en paysage.
 - Supprime l'image d'un coup de cœur retiré de la liste, après accord de Flora (règle 6).
+
+### Changer l'image de partage
+
+C'est l'image qui s'affiche quand on partage le lien du site (LinkedIn, WhatsApp, Slack…). Elle est rangée dans `src/content/partage/` et déclarée dans le champ `imagePartage` de `src/content/site.yaml`, avec sa description (alt).
+
+- Format : 1200 × 630 px, en JPG, moins de 300 Ko (au-delà, WhatsApp n'affiche pas l'aperçu).
+- Garde le nom et l'essentiel loin des bords : certaines applications recadrent l'aperçu.
+- Elle sert pour l'accueil, la page À propos et les mentions légales. Chaque page thème utilise la première image de son premier projet.
 
 ### Changer le favicon
 

@@ -17,7 +17,7 @@ interface Props {
 	titre?: string;
 	/** Description pour Google. Par défaut, celle du site. */
 	description?: string;
-	/** Image d'aperçu lors d'un partage. Par défaut, la photo de l'accueil. */
+	/** Image d'aperçu lors d'un partage. Par défaut, l'image de partage du site (site.yaml). */
 	image?: ImageMetadata;
 	/** Empêche l'indexation par les moteurs de recherche (page 404). */
 	noindex?: boolean;
@@ -32,13 +32,14 @@ const descriptionPage = description ?? site.description;
 const urlCanonique = new URL(cheminPropre(Astro.url), Astro.site);
 
 const imagePartage = await getImage({
-	src: image ?? accueil!.data.photo.src,
+	src: image ?? site.imagePartage?.src ?? accueil!.data.photo.src,
 	width: 1200,
 	height: 630,
 	fit: 'cover',
 	format: 'jpg',
 });
 const urlImagePartage = new URL(imagePartage.src, Astro.site);
+const altImagePartage = image ? undefined : site.imagePartage?.alt;
 ---
 
 <!doctype html>
@@ -67,6 +68,7 @@ const urlImagePartage = new URL(imagePartage.src, Astro.site);
 		<meta property="og:image" content={urlImagePartage} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
+		{altImagePartage && <meta property="og:image:alt" content={altImagePartage} />}
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="generator" content={Astro.generator} />
 	</head>
