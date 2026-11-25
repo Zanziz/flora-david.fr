@@ -1,6 +1,6 @@
 # À faire · flora-david.fr
 
-Mise à jour : 22 novembre 2026
+Mise à jour : 25 novembre 2026
 
 ## Mode d'emploi
 
@@ -15,29 +15,27 @@ Cette liste rassemble ce qui reste à faire sur le site. Les règles de travail 
 Textes à fournir ou à valider par Flora.
 
 - [x] **Coups de cœur** : trois coups de cœur, avec image et lien, remplacent les exemples « À compléter ».
-- [ ] **Textes des projets et accroche** : relire et raccourcir pour le web.
-- [ ] **Introductions des thèmes** : Art Direction, Communication et E-commerce n'en ont pas encore (`src/content/themes.yaml`).
-- [ ] **Années** : à compléter dans 7 projets (ligne `# annee: à compléter`).
-- [ ] **Mentions légales** : relire (`src/content/mentions-legales.md`).
+- [x] **Années** : champ retiré des projets par Flora, la tâche n'a plus d'objet.
+- [x] **Introductions des thèmes** : retirées par Flora, la tâche n'a plus d'objet.
+- [x] **Textes des projets et accroche** : Flora a réécrit beaucoup de textes, il reste à les relire ensemble pour valider.
+- [x] **Mentions légales** : relire (`src/content/mentions-legales.md`), inchangées depuis leur création.
 
 ## Images
 
-Fichiers à fournir par Flora, de préférence les originaux en haute définition plutôt que des exports Canva.
+Le site n'affiche plus aucune image provisoire. Restent des fichiers inutilisés à trier.
 
-- [ ] **Remplacer les 53 images provisoires** par les vraies, en gardant les mêmes noms de fichiers, puis lancer `npm run images`.
-- [ ] **Réécrire les textes alternatifs** des images remplacées : pour l'instant, ils décrivent des images génériques.
-- [ ] **Accueil** : choisir la photo principale et la sélection de l'effet image trail, de 3 à 20 photos (`src/content/accueil/`).
-- [ ] **Supports & catalogues** : fournir des visuels, puis passer `brouillon` à `false`.
-- [ ] **E-commerce Sacrécoeur & Tinsels** (+60 % de CA en ligne) : fournir des visuels du site, puis passer `brouillon` à `false`.
-- [ ] **Portrait** pour la page À propos (facultatif).
+- [x] **Images provisoires** : toutes remplacées sur le site.
+- [x] **Textes alternatifs** : tous réécrits.
+- [x] **Accueil** : photo principale choisie, effet réduit aux photos Sacrécoeur et David & David Studio.
+- [ ] **Fichiers inutilisés** : 6 images provisoires (`perso-04` et `05`, `dds-visuel-produit-01` à `03`, `sacrecoeur-campagne-05`) et 5 photos retirées de l'effet d'accueil, à supprimer après accord.
 
 ## Technique
 
 À faire avant de diffuser largement le lien.
 
 - [x] **Favicon** : une tulipe remplace le logo d'Astro dans l'onglet du navigateur.
-- [ ] **Contrôle qualité** : score Lighthouse mobile à 90 ou plus, navigation au clavier, contrastes. À refaire une fois les vraies images en place.
-- [ ] **Image de partage** : vérifier l'aperçu du lien sur LinkedIn et WhatsApp, une fois la vraie photo d'accueil en place.
+- [x] **Image de partage et description Google** : créées et en ligne.
+- [x] **Aperçu de partage** : vérifier sur LinkedIn (Post Inspector) et sur WhatsApp.
 
 ## Pistes pour plus tard
 
