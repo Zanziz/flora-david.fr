@@ -1,7 +1,7 @@
 ---
 titre: AI Art Direction - Création visuelle assistée par IA
 marque: Sacrécoeur & Gemme
-theme: art-direction
+theme: direction-artistique
 outils:
   - Midjourney
   - Google AI Studio

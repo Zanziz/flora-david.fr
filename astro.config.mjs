@@ -12,5 +12,6 @@ export default defineConfig({
   build: { format: 'file' },
   // Conserve la ponctuation des textes de Flora à l’affichage.
   markdown: { processor: satteri({ features: { smartPunctuation: false } }) },
-  integrations: [sitemap()],
+  // Les mentions légales n'ont pas à apparaître dans Google.
+  integrations: [sitemap({ filter: (page) => !page.endsWith('/mentions-legales') })],
 });

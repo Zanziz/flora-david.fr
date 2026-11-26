@@ -6,10 +6,10 @@
 # - ordre : la position dans le sommaire.
 # - intro : texte court affiché en haut de la page (facultatif).
 
-- id: art-direction
+- id: direction-artistique
   titre: Direction artistique
   ordre: 1
-- id: social-media-brand-content
+- id: identite-de-marque
   titre: Identité de marque & contenus
   ordre: 2
 - id: communication

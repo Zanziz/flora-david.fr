@@ -1,6 +1,6 @@
 ---
 titre: Brand Identity & Content
-theme: social-media-brand-content
+theme: identite-de-marque
 ordre: 1
 galerie:
   - format: texte

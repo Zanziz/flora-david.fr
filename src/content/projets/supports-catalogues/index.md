@@ -1,6 +1,6 @@
 ---
 titre: Editorial Content & Design
-theme: social-media-brand-content
+theme: identite-de-marque
 ordre: 2
 galerie: []
 ---

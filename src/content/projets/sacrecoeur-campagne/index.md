@@ -1,7 +1,7 @@
 ---
 titre: Campaign Art Direction
 marque: Sacrécoeur
-theme: art-direction
+theme: direction-artistique
 ordre: 1
 galerie:
   - format: quadriptyque

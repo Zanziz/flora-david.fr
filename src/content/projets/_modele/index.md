@@ -17,8 +17,8 @@ marque: Nom de la marque
 annee: 2026
 
 # Thème où le projet apparaît. Un de ces identifiants :
-# art-direction, social-media-brand-content, communication, e-commerce, photographie
-theme: art-direction
+# direction-artistique, identite-de-marque, communication, e-commerce, photographie
+theme: direction-artistique
 
 # Position du projet dans la page du thème (1 = en premier).
 ordre: 10

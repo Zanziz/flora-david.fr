@@ -16,7 +16,7 @@ Pour changer une règle, modifie ce fichier, pas `CLAUDE.md`.
 ## 2. Structure du site
 
 - **Accueil** : une photo, une phrase d'accroche et un effet léger d'images qui apparaissent au passage de la souris (image trail), avec une sélection de photos choisie par Flora. Puis le sommaire des thèmes.
-- **5 pages thèmes** : Art Direction, Social Media & Brand Content, Communication, E-commerce, Photographie. Chaque page présente plusieurs projets, les uns sous les autres.
+- **5 pages thèmes** : Direction artistique, Identité de marque & contenus, Marketing & Communication Digital, E-commerce, Photographie. Chaque page présente plusieurs projets, les uns sous les autres.
 - **À propos** : présentation, parcours, outils, « Lyon », et l'encart « Mes derniers coups de cœur ».
 - **Mentions légales**.
 
@@ -128,12 +128,12 @@ La mise en page d'un projet se règle dans le champ `galerie` de son `index.md` 
 - L'ordre des blocs dans la liste donne l'ordre de haut en bas sur la page.
 - Dans un bloc, l'ordre des images donne l'ordre de lecture, de gauche à droite.
 - Une image se cite par son nom de fichier (`./nom-du-fichier.jpg`) et doit se trouver dans le dossier du projet. Chaque image a son texte alternatif.
-- Si Flora parle d'un thème qui contient plusieurs projets (« dans Art Direction… »), retrouve le projet grâce aux noms des images. En cas de doute, demande.
+- Si Flora parle d'un thème qui contient plusieurs projets (« dans Direction artistique… »), retrouve le projet grâce aux noms des images. En cas de doute, demande.
 - Si la demande ne correspond à aucun format (par exemple « quatre images côte à côte »), propose la solution la plus proche (deux diptyques, ou un collage) et demande avant d'appliquer.
 - Retirer une image de la galerie ne supprime pas son fichier. Pour supprimer le fichier, demande d'abord (règle 6).
-- Montre ensuite le résultat en local et résume le changement en une phrase : « En tête de la page Art Direction : campagne-03 en grand, puis 01 et 05 côte à côte. »
+- Montre ensuite le résultat en local et résume le changement en une phrase : « En tête de la page Direction artistique : campagne-03 en grand, puis 01 et 05 côte à côte. »
 
-Exemple : « Dans Art Direction, mets campagne-03 en grand en premier, puis 01 et 05 côte à côte » devient, dans `src/content/projets/sacrecoeur-campagne/index.md` :
+Exemple : « Dans Direction artistique, mets campagne-03 en grand en premier, puis 01 et 05 côte à côte » devient, dans `src/content/projets/sacrecoeur-campagne/index.md` :
 
 ```yaml
 galerie:
@@ -207,7 +207,7 @@ Les photos sont dans `src/content/accueil/`. La photo principale se règle dans 
 - Images : composants `<Image>` ou `<Picture>` d'`astro:assets`, avec un attribut `sizes` adapté. Seule la photo principale de l'accueil est chargée en priorité, les autres en différé.
 - SEO : chaque page a un `title` et une `meta description`.
 - Nommage : fichiers et dossiers en minuscules avec tirets ; composants en PascalCase (`ProjetSection.astro`).
-- Commits en français, une phrase claire : « Ajoute le projet Gemme dans Art Direction ».
+- Commits en français, une phrase claire : « Ajoute le projet Gemme dans Direction artistique ».
 - Serveur de développement : lance-le en arrière-plan avec `npx astro dev --background`, et gère-le avec `npx astro dev stop`, `npx astro dev status` et `npx astro dev logs`.
 - Documentation Astro : https://docs.astro.build. Consulte le guide concerné avant de toucher aux [pages](https://docs.astro.build/en/guides/routing/), aux [composants](https://docs.astro.build/en/basics/astro-components/), au [contenu](https://docs.astro.build/en/guides/content-collections/), aux [images](https://docs.astro.build/en/guides/images/) ou aux [styles](https://docs.astro.build/en/guides/styling/).
 
